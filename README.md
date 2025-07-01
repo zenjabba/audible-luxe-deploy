@@ -15,16 +15,24 @@ A modern audiobook streaming application that provides a beautiful interface for
 ## Prerequisites
 
 - Docker and Docker Compose installed on your server
-- V3 API credentials (license key)
+- V3 API credentials - Get your license key from [https://store.datahorders.org/](https://store.datahorders.org/)
 - A server with at least 2GB RAM
 - Port 80 available (or modify docker-compose.yml for a different port)
 
 ## Quick Start
 
+### One-line installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/zenjabba/audible-luxe-deploy/main/setup.sh | bash
+```
+
+### Manual installation
+
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/yourusername/audible-luxe-deploy.git
+git clone https://github.com/zenjabba/audible-luxe-deploy.git
 cd audible-luxe-deploy
 ```
 
@@ -40,8 +48,8 @@ Edit `.env` and add your V3 API credentials:
 
 ```env
 # REQUIRED: V3 API Configuration
-V3_API_BASE_URL=https://abi-backend.unixhost.eu/api/v3
-V3_API_LICENSE_KEY=your_actual_license_key_here
+V3_API_BASE_URL=your_v3_api_base_url_here
+V3_API_LICENSE_KEY=your_actual_license_key_here  # Get from https://store.datahorders.org/
 
 # REQUIRED: Security (generate a random string)
 SESSION_SECRET=your-random-session-secret-here
@@ -184,28 +192,16 @@ docker-compose exec redis redis-cli FLUSHALL
 ## Security Considerations
 
 1. **Change the SESSION_SECRET** - Use a strong, random value
-2. **Use HTTPS** - Consider using a reverse proxy like Caddy or Nginx with Let's Encrypt
-3. **Firewall** - Only expose necessary ports
-4. **Updates** - Regularly update Docker images
-
-## SSL/HTTPS Setup
-
-For production use, we recommend setting up HTTPS. Here's a simple approach using Caddy:
-
-1. Install Caddy on your server
-2. Create a Caddyfile:
-   ```
-   yourdomain.com {
-       reverse_proxy localhost:80
-   }
-   ```
-3. Caddy will automatically obtain and manage SSL certificates
+2. **Firewall** - Only expose necessary ports
+3. **Updates** - Regularly update Docker images
+4. **HTTPS** - For production use, consider placing this behind a reverse proxy with SSL
 
 ## Support
 
 For issues or questions:
-- Check the [Issues](https://github.com/yourusername/audible-luxe-deploy/issues) page
+- Check the [Issues](https://github.com/zenjabba/audible-luxe-deploy/issues) page
 - Review logs with `docker-compose logs`
+- Get your V3 API license key from [https://store.datahorders.org/](https://store.datahorders.org/)
 
 ## License
 
