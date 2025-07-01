@@ -1,0 +1,19 @@
+# Example override file for development or custom configurations
+# Rename to docker-compose.override.yml to use
+
+version: '3.8'
+
+services:
+  # Example: Change port
+  nginx:
+    ports:
+      - "8080:80"
+  
+  # Example: Add volume for development
+  backend:
+    volumes:
+      - ./custom-config:/app/config
+  
+  # Example: Increase Redis memory
+  redis:
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru

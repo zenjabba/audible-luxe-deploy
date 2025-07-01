@@ -1,0 +1,21 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Data directories
+data/
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
+*~
