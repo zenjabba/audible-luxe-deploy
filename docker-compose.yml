@@ -20,7 +20,7 @@ services:
     container_name: audible-luxe-frontend
     restart: unless-stopped
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       NEXT_PUBLIC_API_URL: /api
     depends_on:
       - backend
