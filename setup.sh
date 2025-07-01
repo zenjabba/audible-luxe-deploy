@@ -15,12 +15,6 @@ print_info() { echo -e "${GREEN}[INFO]${NC} $1"; }
 print_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 print_warning() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
 
-# Check if running as root
-if [[ $EUID -eq 0 ]]; then
-   print_error "This script should not be run as root!"
-   exit 1
-fi
-
 print_info "Starting Audible Luxe deployment setup..."
 
 # Check system requirements
