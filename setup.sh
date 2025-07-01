@@ -40,8 +40,7 @@ if ! command -v docker &> /dev/null; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux
         curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-        sudo usermod -aG docker $USER
+        sh get-docker.sh
         rm get-docker.sh
         print_info "Docker installed. You may need to log out and back in for group changes to take effect."
     elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -60,8 +59,8 @@ if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/
     
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Install Docker Compose plugin
-        sudo apt-get update
-        sudo apt-get install -y docker-compose-plugin
+        apt-get update
+        apt-get install -y docker-compose-plugin
     else
         print_error "Docker Compose is required. Please ensure Docker Desktop is installed with Compose support."
         exit 1
