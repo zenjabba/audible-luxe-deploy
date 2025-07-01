@@ -173,15 +173,26 @@ docker-compose restart backend
 
 ### Database issues
 
-If you encounter database errors:
+The application automatically runs database migrations on startup. If you encounter database errors:
 
 ```bash
-# Backup existing database
-mv data/production.db data/production.db.backup
+# Check backend logs for migration errors
+docker-compose logs backend
 
-# Restart to create fresh database
+# If migration fails, check database permissions
+ls -la data/
+
+# Backup existing database if it exists
+mv data/production.db data/production.db.backup-$(date +%Y%m%d-%H%M%S)
+
+# Restart backend to run migrations again  
 docker-compose restart backend
 ```
+
+If you see "table does not exist" errors, the database migrations didn't run properly. Check that:
+1. The `data/` directory exists and is writable
+2. No permission issues with SQLite file creation
+3. Backend logs show successful migration completion
 
 ### Clear Redis cache
 

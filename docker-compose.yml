@@ -32,7 +32,7 @@ services:
     container_name: audible-luxe-backend
     restart: unless-stopped
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       DATABASE_URL: file:/app/data/production.db
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -49,6 +49,7 @@ services:
       - redis
     networks:
       - audible-luxe
+    command: sh -c "npx prisma migrate deploy && npm start"
 
   redis:
     image: redis:7-alpine
